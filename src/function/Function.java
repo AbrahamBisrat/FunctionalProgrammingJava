@@ -11,11 +11,10 @@ public class Function {
 		
 //		Function<String, Integer> inc = x -> x.length();
 		
-		Function<String, Integer> func = x -> x.length();
-
-        Integer apply = func.apply("mkyong");   // 6
-
-        System.out.println(apply);
 		
 	}
+	
+	static Function initialFunction = 
+			(s) -> s.substring(0,1);
+    
 }
