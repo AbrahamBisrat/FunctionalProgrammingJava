@@ -5,6 +5,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.function.BiFunction;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class CustomInterfaceTester{	
 
@@ -41,6 +42,7 @@ public class CustomInterfaceTester{
 		
 		System.out.println(onlyInOne.apply(movies, numbers));
 		
+//		System.out.println(listConcat.apply(movies, numbers));
 		
 	}
 	
@@ -61,8 +63,16 @@ public class CustomInterfaceTester{
 		onlyInOne = (firstList, secondList) 
 			-> firstList.stream()
 						.filter(x -> !secondList.contains(x))
-//						.filter(y -> !firstList.contains(y))
+						.filter(y -> !firstList.contains(y))
 						.map(x -> x + "\n")
 						.collect(Collectors.toList());
-	public static final 
+	
+	public static final BiFunction<List<String>, List<String>, List<String>>
+		listConcat = (fList, sList) 
+			-> Stream.concat(fList.stream(), sList.stream())
+					.toList();
 }
+
+
+
+
