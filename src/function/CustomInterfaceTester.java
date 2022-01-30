@@ -34,11 +34,11 @@ public class CustomInterfaceTester{
 		};
 		
 		
-		
-		System.out.println(trio.apply(movies, 1, 2));
-		
-		System.out.println(
-				addLen.apply(movies.get(2), movies.get(movies.size() - 1)));
+//		
+//		System.out.println(trio.apply(movies, 1, 2));
+//		
+//		System.out.println(
+//				addLen.apply(movies.get(2), movies.get(movies.size() - 1)));
 		
 		System.out.println(onlyInOne.apply(movies, numbers));
 		
@@ -61,11 +61,23 @@ public class CustomInterfaceTester{
 	
 	public static final BiFunction<List<String>, List<String>, List<String>>
 		onlyInOne = (firstList, secondList) 
-			-> firstList.stream()
+			-> Stream.concat(
+					firstList.stream()
 						.filter(x -> !secondList.contains(x))
+						.map(x -> x + "\n")						
+						
+					,secondList.stream()
 						.filter(y -> !firstList.contains(y))
-						.map(x -> x + "\n")
-						.collect(Collectors.toList());
+						.map(y -> y + "\n")
+						
+				)
+			.sorted(new Comparator<String>() {
+				@Override public int compare(String a, String b) {
+					return a.length() - b.length();
+				}
+			})
+			.collect(Collectors.toList());
+						
 	
 	public static final BiFunction<List<String>, List<String>, List<String>>
 		listConcat = (fList, sList) 
