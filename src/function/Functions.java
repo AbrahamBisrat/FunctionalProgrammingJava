@@ -1,5 +1,6 @@
 package function;
 
+import java.util.List;
 import java.util.function.*;
 
 public class Functions {
@@ -8,15 +9,31 @@ public class Functions {
         String b = "Gang of four";
         String sizeTest = "abcdef"; // very creative
         
-        System.out.println("Function \t: \t" + returnLen.apply("is this working?"));
+        List<String> list = List.of(
+        	"potato",
+        	"banana",
+        	"apples",
+        	"mango"
+        );
+        
+        System.out.println("Function \t-> \t" + returnLen.apply("is this working?"));
 
-        System.out.println("BiFunction \t: \t" + returnCombinedLen.apply(a, b));
+        System.out.println("BiFunction \t-> \t" + returnCombinedLen.apply(a, b));
         
-        System.out.println("Predicate \t: \t" + sizeBelowTen.test(sizeTest));
+        System.out.println("Predicate \t-> \t" + sizeBelowTen.test(sizeTest));
         
-        System.out.println("Dobule rand \t : \t" + giveMeRandom.getAsDouble());
+        System.out.println("Dobule rand \t-> \t" + giveMeRandom.getAsDouble());
         
+        addNameAtEnd.accept(list);
         
+        System.out.println("Consumer \t-> \t" + list);
+        
+        modify.accept(list);
+        
+        System.out.println("Consumer mod \t-> \t" + list);
+        
+        System.out.println("\nDoubleFunctional");
+        System.out.println(doubleFunc.apply(10));
         // 
     }
 
@@ -29,4 +46,19 @@ public class Functions {
     
     static DoubleSupplier giveMeRandom = Math::random;
     
+    static Consumer<List<String>> addNameAtEnd = list -> // assignment
+    	{
+    		for(String each : list) {
+    			each += " X";
+    			System.out.println(each);
+    		}
+    	};
+    	
+    static Consumer<List<String>> modify = list -> 
+    	{
+//    		for(int i = 0; i < list.size(); i++)
+//    			list.set(i, list.get(i) + " X");
+    	};
+    
+    static DoubleFunction<Double> doubleFunc = x -> x + 0.23;
 }
