@@ -1,5 +1,5 @@
 package function;
 
-@FunctionalInterface public interface TriFunction<L, P, I, OL> {
-	OL apply (L l, P p, I i);
+@FunctionalInterface public interface TriFunction<L, P, I, O> {
+	O apply (L l, P p, I i);
 }
