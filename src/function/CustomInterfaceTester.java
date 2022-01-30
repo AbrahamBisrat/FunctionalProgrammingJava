@@ -1,6 +1,7 @@
 package function;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -32,6 +33,9 @@ public class CustomInterfaceTester{
 		TriFunction<List<String>, Integer, Integer, List<String>>
 			trio = (list, first, second) 
 				-> list.stream()
-					   .sorted()
+					   .map(f -> f + " " + first)
+					   .map(s -> s + " " + second)
+					   .map(ln -> ln + "\n")
+					   .sorted(Comparator.comparing(String::length))
 					   .collect(Collectors.toList());
 }
