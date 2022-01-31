@@ -33,8 +33,11 @@ public class Functions {
         System.out.println("Consumer mod \t-> \t" + list);
         
         System.out.println("\nDoubleFunctional");
+        
         System.out.println(doubleFunc.apply(10));
+        
         // 
+        
     }
 
     static Function<String, Integer> returnLen = x -> x.length();

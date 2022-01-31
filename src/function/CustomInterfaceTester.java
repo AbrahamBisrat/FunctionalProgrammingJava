@@ -30,20 +30,26 @@ public class CustomInterfaceTester{
 				add("three");
 				add("four");
 				add("five");
+				add("three");
+				add("four");
+				add("five");add("three");
+				add("four");
+				add("five");
 			}
 		};
 		
 		
-//		
-//		System.out.println(trio.apply(movies, 1, 2));
-//		
-//		System.out.println(
-//				addLen.apply(movies.get(2), movies.get(movies.size() - 1)));
+
+		System.out.println(trio.apply(movies, 1, 2));
 		
-		System.out.println(onlyInOne.apply(movies, numbers));
+		System.out.println(
+				addLen.apply(movies.get(2), movies.get(movies.size() - 1)));
 		
-//		System.out.println(listConcat.apply(movies, numbers));
+		System.out.println(listConcat.apply(movies, numbers));
 		
+		System.out.println(elementsInJustOne.apply(movies, numbers));
+		
+		System.out.println(glorifiedAdder.apply(1, 2, 3));
 	}
 	
 	public static final 
@@ -60,7 +66,7 @@ public class CustomInterfaceTester{
 		addLen = (x, y) -> x.length() + y.length();
 	
 	public static final BiFunction<List<String>, List<String>, List<String>>
-		onlyInOne = (firstList, secondList) 
+		elementsInJustOne = (firstList, secondList) 
 			-> Stream.concat(
 					firstList.stream()
 						.filter(x -> !secondList.contains(x))
@@ -76,6 +82,7 @@ public class CustomInterfaceTester{
 					return a.length() - b.length();
 				}
 			})
+			.distinct()
 			.collect(Collectors.toList());
 						
 	
@@ -83,6 +90,11 @@ public class CustomInterfaceTester{
 		listConcat = (fList, sList) 
 			-> Stream.concat(fList.stream(), sList.stream())
 					.toList();
+	
+	public static final QuadFunction<Integer, Integer, Integer, Integer>
+		glorifiedAdder = (x, y, z) -> x + y + z;
+	
+	
 }
 
 
